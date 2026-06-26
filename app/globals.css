@@ -1,26 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
 @import "tailwindcss";
 
+/*========================================
+RESET
+==========================================*/
+
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--color-text);
+    box-sizing: border-box;
+}
+
+a, button {
+    text-decoration: none;
+    background: none;
+    border: none;
+}
+
+/*========================================
+VARIABLES
+==========================================*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+  font-family: 'Times New Roman', Times, sans-serif;
+
+    /* background */
+    --color-bg: #fff;
+    --color-bg-logo: #5b4fcf;
+    --color-bg-logo-hover: #796eca;
+    --color-bg-filtre: #f5f5f7;
+    --color-bg-btn: #ede9ff;
+    --color-bg-voir-btn-hover: #4a3db0;
+   
+    /* border */
+    --color-border-bottom: #e8e8f0;
+    --color-border: #d0cfe8;
+    --color-border-li: #e4e4ec;
+    --color-border-card: #ebebf0;
+
+    /* texte */
+    --primary-color: #18122C;
+    --color-gras: #4845D2;
+    --color-text: #fff8b9;
+
+    /* btn */
+    --color-btn: #555;
+    --color-btn-hover: #1a1a2e;
+
+    /* shadow */
+    --shadow-box: rgba(91, 79, 207, 0.1);
+
+    /* font-family */
+    --text-kodeMono:  "Kode Mono", monospace;
+ 
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/*++++++++++++++++++++++++++++++++++++++++
+STYLES GLOBAUX
+++++++++++++++++++++++++++++++++++++++++++*/
+
+#app {
+  height: 100vh;
+  width: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*================================
+            HEADER
+=================================*/
+
+header {
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  display: flex;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: clamp(1.5em, 2.5vw, 3.5em);
+}
+
+/*================================
+            MAIN
+=================================*/
+
+main {
+  align-content: center;
+  z-index: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image:
+    linear-gradient(rgba(24, 18, 44, 0.65), rgba(24, 18, 44, 0.65)),
+    url(@/app/fonts/portailDevv2.jpg);
+  height: 100vh;
+  background-color: var(--primary-color);
+  inset: 0;
+  padding: 0 20px 0 20px;
+}
+
+/*----------HERO----------*/
+
+.hero {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: var(--color-text);
+  text-align: center;
+  justify-content: center;
+}
+
+.hero__titre {
+  font-size: clamp(2.1em, 5vw, 6em);
+}
+
+.devconnect {
+  color: var(--color-gras);
+}
+
+.hero__soustitre {
+  font-size: clamp(1.8em, 4vw, 5em);
+}
+
+.hero__description {
+  font-size: clamp(1.5em, 2.5vw, 3.5em);
+}
+
+.hero__button {
+  text-decoration: none;
+  font-size: clamp(1.5em, 2.5vw, 3.5em);
+  border-radius: 15px;
+  border: 1.5px solid var(--border-color);
+  background-color: var(--color-bg-logo);
+  padding: 15px 30px;
+  text-align: center;
+  width: fit-content;
+  display: flex;
+  align-self: center;
+}
+
+.hero__button:hover {
+  background-color: var(--color-bg-logo-hover);
+  transition: all 300ms;
+}
+
+/*----------DOMAINS----------*/
+
+.all__domains {
+    text-align: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  position: absolute;
+  bottom: 50px;
+  right: 20px;
+ 
+}
+
+.all__domains p {
+  font-size: clamp(1em, 1.5vw, 1.5em);
+  font-weight: bold;
+  font-family: var(--text-kodeMono);
+  
+}
+
+#typed-domain {
+   color: var(--color-gras);
+}
+
+/*================================
+            FOOTER
+=================================*/
+
+.footer {
+  font-size: 0.9em;
+  display: flex;
+  text-align: center;
+  justify-self: center;
+  position: absolute;
+  bottom: 10px;
+}
+
+/*================================
+            RESPONSIVE
+=================================*/
+
+/* tablette */
+@media (width > 884px) and (width <= 1024px) {
+  main {
+    background-position: 70% center;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* téléphone */
+
+@media (width <= 884px) {
+  main {
+    background-position: 65% center;
+  }
+
+  .all__domains {
+    bottom: 50px;
+    flex-direction: column;
+  }
 }
