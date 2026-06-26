@@ -1,17 +1,31 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 
-export function initTypedDomains(): void {
-  const container = document.querySelector<HTMLDivElement>(".all__domains");
-  if (!container) return;
+export default function TypedDomains() {
+  const typedRef = useRef<HTMLSpanElement>(null);
 
-  container.innerHTML = `<p class="domain"><span id="typed-domain"></span></p>`;
+  useEffect(() => {
+    if (!typedRef.current) return;
 
-  new Typed("#typed-domain", {
-    strings: ["Front-end", "Back-end", "Full-stack"],
-    typeSpeed: 80,
-    backSpeed: 50,
-    backDelay: 1500,
-    loop: true,
-    smartBackspace: true,
-  });
+    const typed = new Typed(typedRef.current, {
+      strings: ["Front-end", "Back-end", "Full-stack"],
+      typeSpeed: 80,
+      backSpeed: 50,
+      backDelay: 1500,
+      loop: true,
+      smartBackspace: true,
+    });
+
+    return () => typed.destroy();
+  }, []);
+
+  return (
+    <div className="all__domains">
+      <p className="domain">
+        <span ref={typedRef} id="typed-domain"></span>
+      </p>
+    </div>
+  );
 }

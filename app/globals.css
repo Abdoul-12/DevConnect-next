@@ -23,7 +23,6 @@ VARIABLES
 ==========================================*/
 
 :root {
-
   font-family: 'Times New Roman', Times, sans-serif;
 
     /* background */
@@ -53,17 +52,7 @@ VARIABLES
     --shadow-box: rgba(91, 79, 207, 0.1);
 
     /* font-family */
-    --text-kodeMono:  "Kode Mono", monospace;
- 
-}
-
-/*++++++++++++++++++++++++++++++++++++++++
-STYLES GLOBAUX
-++++++++++++++++++++++++++++++++++++++++++*/
-
-#app {
-  height: 100vh;
-  width: 100%;
+    --text-kodeMono: "Kode Mono", monospace;
 }
 
 /*================================
@@ -81,6 +70,7 @@ header {
   top: 20px;
   left: 20px;
   height: clamp(1.5em, 2.5vw, 3.5em);
+  width: auto;
 }
 
 /*================================
@@ -95,11 +85,12 @@ main {
   background-position: center;
   background-image:
     linear-gradient(rgba(24, 18, 44, 0.65), rgba(24, 18, 44, 0.65)),
-    url(@/app/fonts/portailDevv2.jpg);
+    url(@/public/portailDevv2.jpg);
   height: 100vh;
   background-color: var(--primary-color);
   inset: 0;
   padding: 0 20px 0 20px;
+  position: relative;
 }
 
 /*----------HERO----------*/
@@ -108,25 +99,27 @@ main {
   height: fit-content;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 15px;
   color: var(--color-text);
   text-align: center;
   justify-content: center;
 }
 
-.hero__titre {
+.hero h1 {
   font-size: clamp(2.1em, 5vw, 6em);
+  font-weight: bold;
 }
 
 .devconnect {
   color: var(--color-gras);
 }
 
-.hero__soustitre {
+.hero h2 {
   font-size: clamp(1.8em, 4vw, 5em);
+  font-weight: bold;
 }
 
-.hero__description {
+.hero p {
   font-size: clamp(1.5em, 2.5vw, 3.5em);
 }
 
@@ -134,9 +127,8 @@ main {
   text-decoration: none;
   font-size: clamp(1.5em, 2.5vw, 3.5em);
   border-radius: 15px;
-  border: 1.5px solid var(--border-color);
   background-color: var(--color-bg-logo);
-  padding: 15px 30px;
+  padding: 8px 30px;
   text-align: center;
   width: fit-content;
   display: flex;
@@ -158,14 +150,12 @@ main {
   position: absolute;
   bottom: 50px;
   right: 20px;
- 
 }
 
 .all__domains p {
   font-size: clamp(1em, 1.5vw, 1.5em);
   font-weight: bold;
   font-family: var(--text-kodeMono);
-  
 }
 
 #typed-domain {
@@ -197,7 +187,6 @@ main {
 }
 
 /* téléphone */
-
 @media (width <= 884px) {
   main {
     background-position: 65% center;
