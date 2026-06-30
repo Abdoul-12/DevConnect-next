@@ -2,56 +2,50 @@
 @import "tailwindcss";
 
 /*========================================
-RESET
-==========================================*/
-
-* {
-    margin: 0;
-    padding: 0;
-    color: var(--color-text);
-    box-sizing: border-box;
-}
-
-a, button {
-    text-decoration: none;
-    background: none;
-    border: none;
-}
-
-/*========================================
 VARIABLES
 ==========================================*/
 
-:root {
-  font-family: 'Times New Roman', Times, sans-serif;
+@theme {
+  /* background */
+  --color-bg: #fff;
+  --color-bg-logo: #5b4fcf;
+  --color-bg-logo-hover: #796eca;
+  --color-bg-filtre: #f5f5f7;
+  --color-bg-btn: #ede9ff;
+  --color-bg-voir-btn-hover: #4a3db0;
+ 
+  /* border */
+  --color-border-bottom: #e8e8f0;
+  --color-border: #d0cfe8;
+  --color-border-li: #e4e4ec;
+  --color-border-card: #ebf0;
 
-    /* background */
-    --color-bg: #fff;
-    --color-bg-logo: #5b4fcf;
-    --color-bg-logo-hover: #796eca;
-    --color-bg-filtre: #f5f5f7;
-    --color-bg-btn: #ede9ff;
-    --color-bg-voir-btn-hover: #4a3db0;
-   
-    /* border */
-    --color-border-bottom: #e8e8f0;
-    --color-border: #d0cfe8;
-    --color-border-li: #e4e4ec;
-    --color-border-card: #ebebf0;
+  /* texte */
+  --color-primary: #18122C;
+  --color-gras: #4845D2;
+  --color-text: #fff8b9;
 
-    /* texte */
-    --primary-color: #18122C;
-    --color-gras: #4845D2;
-    --color-text: #fff8b9;
+  /* btn */
+  --color-btn: #555;
+  --color-btn-hover: #1a1a2e;
 
-    /* btn */
-    --color-btn: #555;
-    --color-btn-hover: #1a1a2e;
+  /* shadow */
+  --shadow-box: 0 4px 12px 0 rgba(91, 79, 207, 0.1); 
 
-    /* shadow */
-    --shadow-box: rgba(91, 79, 207, 0.1);
-
-    /* font-family */
-    --text-kodeMono: "Kode Mono", monospace;
+  /* font-family */
+  --font-kode-mono: "Kode Mono", monospace; 
+  --font-times: 'Times New Roman', Times, sans-serif;
 }
 
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a, button {
+  text-decoration: none;
+  background: none;
+  border: none;
+}
