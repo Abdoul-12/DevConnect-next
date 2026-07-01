@@ -37,15 +37,19 @@ VARIABLES
   --font-times: 'Times New Roman', Times, sans-serif;
 }
 
-/* Reset */
+/*  */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-a, button {
+/*a, button {
   text-decoration: none;
   background: none;
   border: none;
+} */
+
+a, button {
+    text-decoration: none;
 }
