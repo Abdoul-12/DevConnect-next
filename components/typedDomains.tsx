@@ -4,28 +4,28 @@ import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 
 export default function TypedDomains() {
-  const typedRef = useRef<HTMLSpanElement>(null);
+  const spanRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!typedRef.current) return;
+    if (!spanRef.current) return;
 
-    const typed = new Typed(typedRef.current, {
+    const typed = new Typed(spanRef.current, {
       strings: ["Front-end", "Back-end", "Full-stack"],
       typeSpeed: 80,
       backSpeed: 50,
       backDelay: 1500,
       loop: true,
-      smartBackspace: true,
     });
 
     return () => typed.destroy();
   }, []);
 
   return (
-    <div className="all__domains">
-      <p className="domain">
-        <span ref={typedRef} id="typed-domain"></span>
-      </p>
-    </div>
+    <p
+      className="font-bold text-hero-text text-[clamp(1em,1.5vw,1.5em)]
+                  font-[family-name: --font-kode-mono]"
+    >
+      <span ref={spanRef} className="text-accent" />
+    </p>
   );
 }
