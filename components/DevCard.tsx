@@ -15,11 +15,10 @@ function getNomOutil(outil: string | { id: string; nom: string }): string {
 
 export default function DevCard({ dev }: { dev: Dev }) {
   return (
-    <article className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden
-                        hover:border-accent-light/50 transition-all duration-300 group">
+    <article className="border border-border-card rounded-2xl overflow-hidden">
 
       {/* Photo ou initiale */}
-      <div className="relative h-52 overflow-hidden bg-accent-light/20">
+      <div className="relative h-52 overflow-hidden bg-bg-logo/20">
         {dev.image ? (
           <Image
             src={`/img/${dev.image}`}
@@ -29,7 +28,7 @@ export default function DevCard({ dev }: { dev: Dev }) {
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <span className="text-5xl font-bold text-white/20">
+            <span className="text-5xl font-bold text-btn/20">
               {dev.nom.charAt(0)}
             </span>
           </div>
@@ -38,10 +37,10 @@ export default function DevCard({ dev }: { dev: Dev }) {
 
       {/* Infos */}
       <div className="p-5">
-        <h2 className="text-hero-text font-bold text-lg leading-tight mb-1">
+        <h2 className="text-text font-bold text-lg leading-tight mb-1">
           {dev.nom}
         </h2>
-        <p className="text-hero-text/60 text-sm mb-4">
+        <p className="text-text/60 text-sm mb-4">
           {dev.specialite}
         </p>
 
@@ -51,7 +50,7 @@ export default function DevCard({ dev }: { dev: Dev }) {
             {dev.outils.map((outil, i) => (
               <span
                 key={i}
-                className="bg-white/10 text-hero-text/80 text-xs px-2.5 py-1 rounded-md"
+                className="bg-btn/10 text-text/80 text-xs px-2.5 py-1 rounded-md"
               >
                 {getNomOutil(outil)}
               </span>
@@ -62,12 +61,12 @@ export default function DevCard({ dev }: { dev: Dev }) {
         {/* Lien portfolio */}
         {dev.lienPortfolio && (
           
-            href={dev.lienPortfolio.trim()}
+            <a href={dev.lienPortfolio.trim()}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-full
-                       border border-white/20 hover:border-accent-light
-                       text-hero-text/70 hover:text-hero-text text-sm
+                       bg-bg-logo hover:bg-bg
+                       text-text/70 hover:text-text text-sm
                        rounded-xl py-2.5 transition-all duration-200"
           >
             Voir le portfolio
