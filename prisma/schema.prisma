@@ -10,17 +10,17 @@ datasource db {
 model Developpeur {
   id            String   @id @default(cuid())
   nom           String
-  specialite    String
-  image         String?
-  lienPortfolio String?
-  outils        Outil[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  image         String?
+  lienPortfolio String?
+  specialite    String
+  outils        Outil[]
 }
 
 model Outil {
   id            String      @id @default(cuid())
   nom           String
-  developpeur   Developpeur @relation(fields: [developpeurId], references: [id], onDelete: Cascade)
   developpeurId String
+  developpeur   Developpeur @relation(fields: [developpeurId], references: [id], onDelete: Cascade)
 }

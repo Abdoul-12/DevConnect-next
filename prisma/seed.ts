@@ -91,7 +91,7 @@ async function main() {
     })
   }
 
-  console.log("✅ 10 développeurs importés depuis db.ts")
+  console.log("10 développeurs importés depuis db.ts")
 }
 
 main()

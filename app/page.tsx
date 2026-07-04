@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import TypedDomains from "@/components/typedDomains";
+import TypedDomains from "@/components/TypedDomains";
 
 export default function Home() {
   return (

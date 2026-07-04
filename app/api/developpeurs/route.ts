@@ -1,27 +1,29 @@
-import { NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+import { NextResponse } from "next/server";
+import { obtenirUtilisateurConnecte } from "@/lib/supabase/auth";
+import {
+  listerDeveloppeurs,
+  creerDeveloppeur,
+} from "@/lib/developpeurs/developpeurs.service";
 
 export async function GET() {
-  const developpeurs = await prisma.developpeur.findMany({
-    include:  { outils: true },
-    orderBy:  { createdAt: "desc" },
-  })
-  return NextResponse.json(developpeurs)
+  const developpeurs = await listerDeveloppeurs();
+  return NextResponse.json(developpeurs);
 }
 
 export async function POST(request: Request) {
-  const body = await request.json()
-  const dev = await prisma.developpeur.create({
-    data: {
-      nom:           body.nom,
-      specialite:    body.specialite,
-      image:         body.image ?? null,
-      lienPortfolio: body.lienPortfolio ?? null,
-      outils: {
-        create: body.outils?.map((nom: string) => ({ nom })) ?? [],
-      },
-    },
-    include: { outils: true },
-  })
-  return NextResponse.json(dev, { status: 201 })
+  const utilisateur = await obtenirUtilisateurConnecte();
+  if (!utilisateur) {
+    return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
+  }
+
+  const body = await request.json();
+  const developpeur = await creerDeveloppeur({
+    nom: body.nom,
+    specialite: body.specialite,
+    image: body.image ?? null,
+    lienPortfolio: body.lienPortfolio ?? null,
+    outils: body.outils ?? [],
+  });
+
+  return NextResponse.json(developpeur, { status: 201 });
 }
