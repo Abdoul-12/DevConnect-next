@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Developpeur {
+  id            String   @id @default(cuid())
+  nom           String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  image         String?
+  lienPortfolio String?
+  specialite    String
+  outils        Outil[]
+}
+
+model Outil {
+  id            String      @id @default(cuid())
+  nom           String
+  developpeurId String
+  developpeur   Developpeur @relation(fields: [developpeurId], references: [id], onDelete: Cascade)
+}
