@@ -8,7 +8,7 @@ const etatInitial: EtatConnexion = null;
 export default function PageConnexionAdmin() {
   const [etat, actionEnCours, enCours] = useActionState(
     connexionAction,
-    etatInitial
+    etatInitial,
   );
 
   return (
@@ -31,7 +31,6 @@ export default function PageConnexionAdmin() {
           </p>
         )}
 
-      <div className="flex flex-col gap-2">
         <div className="space-y-1">
           <label htmlFor="email" className="text-sm font-medium text-btn">
             Adresse e-mail
@@ -60,14 +59,28 @@ export default function PageConnexionAdmin() {
           />
         </div>
 
-        <button
-          type="submit"
-          disabled={enCours}
-          className="w-full bg-bg-logo hover:bg-bg-logo-hover text-white rounded-lg py-2.5 text-sm font-medium transition-colors disabled:opacity-60"
-        >
-          {enCours ? "Connexion..." : "Se connecter"}
-        </button>
-      </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            <input
+              id="resterConnecte"
+              name="resterConnecte"
+              type="checkbox"
+              defaultChecked
+              className="h-4 w-4 rounded border-border accent-gras"
+            />
+            <label htmlFor="resterConnecte" className="text-sm text-btn/80">
+              Rester connecté
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            disabled={enCours}
+            className="w-full bg-bg-logo hover:bg-bg-logo-hover text-white rounded-lg py-2.5 text-sm font-medium transition-colors disabled:opacity-60"
+          >
+            {enCours ? "Connexion..." : "Se connecter"}
+          </button>
+        </div>
       </form>
     </div>
   );
