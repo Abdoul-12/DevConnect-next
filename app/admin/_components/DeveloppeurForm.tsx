@@ -18,7 +18,7 @@ export default function DeveloppeurForm({
   return (
     <form
       action={action}
-      className="bg-bg rounded-2xl border border-border-card p-6 space-y-5 max-w-2xl flex flex-col"
+      className="bg-bg rounded-2xl border border-border-card p-6 space-y-5 max-w-2xl flex flex-col gap-1"
     >
       <div className="space-y-1">
         <label htmlFor="nom" className="text-sm font-medium text-btn">
