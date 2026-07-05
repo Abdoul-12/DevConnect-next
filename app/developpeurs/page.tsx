@@ -1,11 +1,30 @@
 import Link from "next/link";
+import DevCard from "@/components/DevCard";
+import FiltreDomaine from "@/components/FiltreDomaine";
+import { listerDeveloppeurs } from "@/lib/developpeurs/developpeurs.service";
+import { correspondALaSpecialite } from "@/lib/utils/specialite";
 
-export default function developpeurs() {
+// Dépend des paramètres de recherche et des données les plus récentes de la base.
+export const dynamic = "force-dynamic";
+
+export default async function PageDeveloppeurs({
+  searchParams,
+}: {
+  searchParams: Promise<{ specialite?: string }>;
+}) {
+  const { specialite } = await searchParams;
+  const specialiteActive = specialite ?? "Tous";
+
+  const tousLesDeveloppeurs = await listerDeveloppeurs();
+  const developpeursAffiches = tousLesDeveloppeurs.filter((developpeur) =>
+    correspondALaSpecialite(developpeur.specialite, specialiteActive)
+  );
+
   return (
     <div className="min-h-screen">
       {/* == HEADER == */}
-      <header className="sticky border-b border-border-bottom px-8 py-4 ">
-        <nav className="relative z-2 flex items-center justify-center ml-8 mr-8">
+      <header className="sticky top-0 z-10 border-b border-border-bottom px-8 py-4 bg-bg">
+        <nav className="relative flex items-center justify-center ml-8 mr-8">
           <Link
             href="/"
             className="flex items-center gap-2 text-sm text-btn absolute left-0"
@@ -22,7 +41,7 @@ export default function developpeurs() {
               <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z" />
             </svg>
           </Link>
-          <div className="flex self-center items-center gap-2 font-bold text-lg">
+          <div className="flex items-center gap-2 font-bold text-lg">
             <span className="text-gras">●</span>
             <span>DevConnect</span>
           </div>
@@ -30,32 +49,24 @@ export default function developpeurs() {
       </header>
 
       {/* == BARRE DE FILTRES == */}
-      <div className="flex gap-3 px-8 py-4 border-b border-border-bottom bg-bg-filtre">
-        <button className=" px-4 py-1.5 rounded-full border border-gras bg-bg-btn text-btn text-sm font-medium cursor-pointer">
-          Tous
-        </button>
-        <button className="px-4 py-1.5 rounded-full border border-border text-sm font-medium text-btn cursor-pointer">
-          Full Stack
-        </button>
-        <button className="px-4 py-1.5 rounded-full border border-border text-sm font-medium text-btn cursor-pointer">
-          Frontend
-        </button>
-        <button className="px-4 py-1.5 rounded-full border border-border text-sm font-medium text-btn cursor-pointer">
-          Backend
-        </button>
+      <div className="sticky top-16 z-10 flex gap-3 px-8 py-4 border-b border-border-bottom bg-bg-filtre">
+        <FiltreDomaine actif={specialiteActive} />
       </div>
+
       <main className="px-8 py-8">
-        {/* == TITRE DE LA SECTION == */}
         <h2 className="text-xl font-bold mb-6">Tous les développeurs</h2>
 
-        {/* == GRILLE DE CARDS == */}
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {/* Une seule card en exemple, comme ça Dorcas et Nancy pourront ajouter les autres en suivant le modèle */}
-          <div className="flex flex-col items-center text-center p-6 rounded-2xl border border-border bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-            <div className="w-14 h-14 rounded-full flex items-center justify-center text-sm font-bold mb-4 bg-bg-btn text-gras">
-              BK
-            </div>{}</div>
+          {developpeursAffiches.map((developpeur) => (
+            <DevCard key={developpeur.id} dev={developpeur} />
+          ))}
         </section>
+
+        {developpeursAffiches.length === 0 && (
+          <p className="text-btn/60 text-sm">
+            Aucun développeur ne correspond à ce filtre.
+          </p>
+        )}
       </main>
     </div>
   );

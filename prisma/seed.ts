@@ -1,7 +1,12 @@
 import "dotenv/config"
 import { PrismaClient } from "../app/generated/prisma/index.js"
+import { PrismaPg } from "@prisma/adapter-pg"
 
-const prisma = new PrismaClient()
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL!,
+  ssl: { rejectUnauthorized: false },
+})
+const prisma = new PrismaClient({ adapter })
 
 async function main() {
   const developpeurs = [
@@ -91,7 +96,7 @@ async function main() {
     })
   }
 
-  console.log("✅ 10 développeurs importés depuis db.ts")
+  console.log("10 développeurs importés depuis db.ts")
 }
 
 main()

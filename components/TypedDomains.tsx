@@ -22,10 +22,10 @@ export default function TypedDomains() {
 
   return (
     <p
-      className="font-bold text-hero-text text-[clamp(1em,1.5vw,1.5em)]
+      className="font-bold text-text text-[clamp(1em,1.5vw,1.5em)]
                   font-[family-name: --font-kode-mono]"
     >
-      <span ref={spanRef} className="text-accent" />
+      <span ref={spanRef} className="text-gras" />
     </p>
   );
 }
