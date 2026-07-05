@@ -20,8 +20,9 @@ export async function connexionAction(
 ): Promise<EtatConnexion> {
   const email = String(formData.get("email") ?? "");
   const motDePasse = String(formData.get("motDePasse") ?? "");
+  const resterConnecte = formData.get("resterConnecte") === "on";
 
-  const supabase = await creerClientServeur();
+  const supabase = await creerClientServeur(resterConnecte);
   const { error } = await supabase.auth.signInWithPassword({
     email,
     password: motDePasse,
