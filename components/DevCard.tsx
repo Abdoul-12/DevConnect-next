@@ -15,18 +15,18 @@ function getNomOutil(outil: string | { id: string; nom: string }): string {
 
 export default function DevCard({ dev }: { dev: Dev }) {
   return (
-    <article className="group border border-border-card rounded-2xl overflow-hidden bg-bg">
+    <article className="flex flex-col items-center text-center pt-6 pb-3 rounded-2xl border border-border bg-bg shadow-md hover:shadow-lg transition-shadow duration-300 h-full">
       {/* Photo ou initiale */}
-      <div className="relative h-52 overflow-hidden bg-bg-logo/20">
+      <div className="relative rounded-full w-20 h-20 min-h-20 min-w-20 overflow-hidden bg-bg-logo/20 items-center justify-center content-center">
         {dev.image ? (
           <Image
             src={`/${dev.image}`}
             alt={dev.nom}
             fill
-            className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+            className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-20 h-20 min-h-20 min-w-20 rounded-full flex items-center justify-center text-sm font-bold mb-4 bg-bg-btn) text-gras">
             <span className="text-5xl font-bold text-btn/20">
               {dev.nom.charAt(0)}
             </span>
@@ -35,7 +35,7 @@ export default function DevCard({ dev }: { dev: Dev }) {
       </div>
 
       {/* Infos */}
-      <div className="p-5">
+      <div className="relative h-full p-3 flex flex-col gap-3 items-center justify-center">
         <h2 className="text-btn-hover font-bold text-lg leading-tight mb-1">
           {dev.nom}
         </h2>
@@ -43,7 +43,7 @@ export default function DevCard({ dev }: { dev: Dev }) {
 
         {/* Outils */}
         {dev.outils.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-5">
+          <div className="flex flex-wrap gap-2 mb-5 justify-center">
             {dev.outils.map((outil, i) => (
               <span
                 key={i}
@@ -61,10 +61,7 @@ export default function DevCard({ dev }: { dev: Dev }) {
             href={dev.lienPortfolio.trim()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-full
-                       bg-bg-logo hover:bg-bg-voir-btn-hover
-                       text-white text-sm
-                       rounded-xl py-2.5 transition-all duration-200"
+            className="flex items-center justify-center w-full bg-bg-logo hover:bg-bg-voir-btn-hover text-white text-sm rounded-xl py-2.5 transition-all duration-200 mt-auto sticky bottom-0"
           >
             Voir le portfolio
           </a>

@@ -49,14 +49,14 @@ export default async function PageDeveloppeurs({
       </header>
 
       {/* == BARRE DE FILTRES == */}
-      <div className="sticky top-16 z-10 flex gap-3 px-8 py-4 border-b border-border-bottom bg-bg-filtre">
+      <div className="sticky top-15.25 z-10 flex gap-3 px-8 py-4 border-b border-border-bottom bg-bg-filtre">
         <FiltreDomaine actif={specialiteActive} />
       </div>
 
       <main className="px-8 py-8">
-        <h2 className="text-xl font-bold mb-6">Tous les développeurs</h2>
+        <h2 className="text-xl font-bold mb-6">Liste des développeurs</h2>
 
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-fr gap-6">
           {developpeursAffiches.map((developpeur) => (
             <DevCard key={developpeur.id} dev={developpeur} />
           ))}
