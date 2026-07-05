@@ -15,7 +15,7 @@ function getNomOutil(outil: string | { id: string; nom: string }): string {
 
 export default function DevCard({ dev }: { dev: Dev }) {
   return (
-    <article className="flex flex-col items-center text-center pt-6 pb-3 rounded-2xl border border-border bg-bg shadow-md hover:shadow-lg transition-shadow duration-300 h-full">
+    <article className="flex flex-col items-center text-center pt-6 pb-3 rounded-2xl border border-border bg-bg shadow-md hover:shadow-lg transition-shadow duration-300">
       {/* Photo ou initiale */}
       <div className="relative rounded-full w-20 h-20 min-h-20 min-w-20 overflow-hidden bg-bg-logo/20 items-center justify-center content-center">
         {dev.image ? (
@@ -23,7 +23,7 @@ export default function DevCard({ dev }: { dev: Dev }) {
             src={`/${dev.image}`}
             alt={dev.nom}
             fill
-            className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            className="object-cover object-center"
           />
         ) : (
           <div className="w-20 h-20 min-h-20 min-w-20 rounded-full flex items-center justify-center text-sm font-bold mb-4 bg-bg-btn) text-gras">
@@ -35,7 +35,7 @@ export default function DevCard({ dev }: { dev: Dev }) {
       </div>
 
       {/* Infos */}
-      <div className="relative h-full p-3 flex flex-col gap-3 items-center justify-center">
+      <div className="h-min p-3 flex flex-col gap-3 items-center justify-center">
         <h2 className="text-btn-hover font-bold text-lg leading-tight mb-1">
           {dev.nom}
         </h2>
@@ -61,7 +61,7 @@ export default function DevCard({ dev }: { dev: Dev }) {
             href={dev.lienPortfolio.trim()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-full bg-bg-logo hover:bg-bg-voir-btn-hover text-white text-sm rounded-xl py-2.5 transition-all duration-200 mt-auto sticky bottom-0"
+            className="flex items-center justify-center w-full bg-bg-logo hover:bg-bg-voir-btn-hover text-white text-sm rounded-xl py-2.5 transition-all duration-200 mt-auto"
           >
             Voir le portfolio
           </a>
